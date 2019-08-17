@@ -131,6 +131,13 @@ Description : n/a
 ---------------------------------------------
 '''
 class Subject(models.Model):
+    code = models.CharField(max_length=20,
+                            verbose_name="Subject Code",
+                            help_text="Subject Code, e.g. CIS101",
+                            default="CIS101",
+                            primary_key=True,
+                            blank=False,
+                            null=False)
     title = models.CharField(max_length=100,
                             verbose_name="Subject Title",
                             blank=False,
@@ -156,6 +163,7 @@ class UserSubject(models.Model):
     user = models.ForeignKey(User,
                              on_delete=models.CASCADE)
     subject = models.ForeignKey(Subject,
+                                to_field="code",
                                 on_delete=models.CASCADE)
 
 
