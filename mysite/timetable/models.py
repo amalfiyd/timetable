@@ -119,6 +119,10 @@ class User(models.Model):
     user_type = models.ForeignKey(UserType,
                               on_delete=models.CASCADE,
                               verbose_name="User Type")
+    hours_per_week = models.IntegerField(verbose_name="Hours per Week",
+                                         default=1,
+                                         null=False,
+                                         blank=False)
 
     def __str__(self):
         return self.name
@@ -211,3 +215,19 @@ class UserSubjectSchedule(models.Model):
                                  on_delete=models.CASCADE)
     user_subject = models.ForeignKey(UserSubject,
                                      on_delete=models.CASCADE)
+
+'''
+---------------------------------------------
+Model       : GroupSubject
+Description : n/a
+---------------------------------------------
+'''
+class GroupSubject(models.Model):
+    group = models.ForeignKey(Group,
+                                 on_delete=models.CASCADE)
+    subject = models.ForeignKey(Subject,
+                                     on_delete=models.CASCADE)
+    hours_per_week = models.IntegerField(verbose_name="Hours per Week",
+                                         default=1,
+                                         blank=False,
+                                         null=False,)
